@@ -22,6 +22,11 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = "Forecast";
+}
+
 function displayTemperature(response) {
   celsiusTemp = Math.round(response.data.main.temp);
 
@@ -84,3 +89,5 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 let celsiusTemp = null;
+
+displayForecast();
