@@ -39,27 +39,23 @@ function displayForecast(response) {
       forecastHTML =
         forecastHTML +
         `
-              <div class="col-2">                                                     
-                <div class="weather-forecast-date">${formatDay(
-                  forecastDay.dt
-                )}</div>
-                <img
-                  src="https://openweathermap.org/img/wn/${
-                    forecastDay.weather[0].icon
-                  }@2x.png"
-                  alt="sunny"
-                  width="42"
-                />
-                <div class="weather-forecast-temp">
-                  <span class="weather-forecast-temp-max">${Math.round(
-                    forecastDay.temp.max
-                  )}°</span>
-                  <span class="weather-forecast-temp-min">${Math.round(
-                    forecastDay.temp.min
-                  )}°</span>
-                </div>
-              </div>
-            `;
+    <div class="col-2">
+      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+      <img src="https://openweathermap.org/img/wn/${
+        forecastDay.weather[0].icon
+      }@2x.png"
+      alt="sunny"
+      width="42"
+      />
+     <div class="weather-forecast-temp">
+     <span class="weather-forecast-temp-max">${Math.round(
+       forecastDay.temp.max
+     )}°</span>
+     <span class="weather-forecast-temp-min">${Math.round(
+       forecastDay.temp.min
+     )}°</span>
+      </div>
+  </div>`;
     }
   });
 
@@ -69,7 +65,7 @@ function displayForecast(response) {
 
 function getForecast(coordinates) {
   let apiKey = "caa883a4a60d93878755b08a933f74ea";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=${part}&appid=${apiKey}&unit=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&unit=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -125,6 +121,8 @@ function showCelsiusTemp(event) {
   temperatureElement.innerHTML = celsiusTemp;
 }
 
+let celsiusTemp = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
@@ -134,4 +132,5 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
-let celsiusTemp = null;
+search("Melbourne");
+displayForecast();
